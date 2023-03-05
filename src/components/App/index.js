@@ -1,11 +1,14 @@
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import PurgeTasksButton from '../PurgeTasksButton/PurgeTasksButton';
+import SearchTaskBar from '../SearchTaskBar/SearchTaskBar';
+import TaskList from '../TaskList';
+import './styles.scss';
 
 function App() {
   return (
     <div className="app">
-      <img src={reactLogo} alt="react logo" />
-      <h1>Composant : App</h1>
+      <SearchTaskBar />
+      <TaskList />
+      <PurgeTasksButton />
     </div>
   );
 }
