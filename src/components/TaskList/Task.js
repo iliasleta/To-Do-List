@@ -1,13 +1,11 @@
-import { useContext } from 'react';
-import Context from '../App/context';
 import './styles.scss';
 
-function Task() {
-  const value = useContext(Context);
+function Task({ task }) {
+  // const value = useContext(Context);
 
   return (
     <li className="task">
-      {value}
+      {task}
       <button
         type="button"
         className="taskDelete"

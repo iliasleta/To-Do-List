@@ -6,19 +6,41 @@ import TaskList from '../TaskList';
 import './styles.scss';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const localTask = JSON.parse(localStorage.getItem('tasks')) || {};
+  const [tasks, setTasks] = useState(['Toucher de l\'herbe']);
+  // const [tasks, setTasks] = useState(() => {
+  //   const savedTask = localStorage.getItem('tasks');
+  //   const parsedTask = JSON.parse(savedTask);
+  //   return parsedTask || '';
+  // });
+  const [addTask, setAddTask] = useState(false);
+  const [newTask, setNewTask] = useState('');
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
+  function addNewTask() {
+    setTasks([...tasks, setNewTask]);
+  }
+
   console.log(localStorage);
 
   return (
     <div className="app">
-      <Context.Provider value="context provider value">
+      <Context.Provider
+        value={{
+          addTask,
+          setAddTask,
+          tasks,
+          setTasks,
+          setNewTask,
+          newTask,
+          addNewTask,
+        }}
+      >
         <SearchTaskBar />
-        <TaskList />
+        <TaskList addTask={addTask} tasks={tasks} />
         <PurgeTasksButton />
       </Context.Provider>
     </div>
