@@ -3,7 +3,7 @@ import Context from '../App/context';
 import './styles.scss';
 
 function AddTaskField() {
-  const { setTasks, setNewTask, addNewTask, tasks, newTask } = useContext(Context);
+  const { setTasks, setNewTask, tasks, newTask, setAddTask } = useContext(Context);
   console.log(setTasks);
   const localTasks = JSON.parse(localStorage.getItem('tasks')) || [];
   return (
@@ -15,8 +15,9 @@ function AddTaskField() {
         ...tasks,
         newTask,
       ]);
-      localTasks.push(newTask);
-      localStorage.setItem('tasks', JSON.stringify(localTasks));
+      const updatedTasks = localTasks.concat(newTask);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      setAddTask(false);
     }}
     >
       <input

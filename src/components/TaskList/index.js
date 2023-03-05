@@ -4,10 +4,12 @@ import './styles.scss';
 import AddTaskButton from './AddTaskButton';
 import AddTaskField from './AddTaskField';
 
-function TaskList({ addTask, tasks }) {
+function TaskList({ addTask }) {
+  const taskString = localStorage.getItem('tasks');
+  const taskArray = JSON.parse(taskString);
   return (
     <ul className="taskList">
-      {tasks.map((task) => (
+      {taskArray.map((task) => (
         <Task key={task} task={task} />
       ))}
       <AddTaskButton />
@@ -20,7 +22,6 @@ function TaskList({ addTask, tasks }) {
 
 TaskList.propTypes = {
   addTask: PropTypes.bool.isRequired,
-  tasks: PropTypes.array.isRequired,
 };
 
 export default TaskList;
