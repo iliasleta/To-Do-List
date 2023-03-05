@@ -40,6 +40,7 @@ function App() {
           setNewTask,
           newTask,
           addNewTask,
+          searchQuery,
         }}
       >
         <SearchTaskBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />

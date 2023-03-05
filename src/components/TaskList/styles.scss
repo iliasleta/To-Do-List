@@ -16,7 +16,6 @@
     font-size: 1.5em;
     overflow: hidden;
     text-overflow: ellipsis;
-    border-radius: 8px;
   }
 
   .task:hover {
@@ -44,6 +43,8 @@
   .addTaskField {
     width: 70%;
     margin-top: 1vh;
+    height: 5vh;
+    font-weight: bolder;
   }
   
 
