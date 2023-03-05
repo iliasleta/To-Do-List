@@ -9,16 +9,28 @@
     width: 70%;
     margin: auto;
     border: 1px solid black;
-    padding: 2vh 0 2vh 0;
+    padding: 2vh 0 2vh 2vh;
     margin-top: 2vh;
     margin-bottom: 2vh;
+    height: auto;
+    font-size: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 8px;
+  }
+
+  .task:hover {
+    overflow: visible;
+    height: auto;
+    white-space: normal;
+    word-wrap: break-word;
   }
 
   .addTask {
     background-color: blue;
     color: white;
     width: 70%;
-    height: 3.5vh;
+    min-height: 3.5vh;
     margin-bottom: 1vh;
   }
 
@@ -31,6 +43,7 @@
 
   .addTaskField {
     width: 70%;
+    margin-top: 1vh;
   }
   
 

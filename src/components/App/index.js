@@ -6,25 +6,28 @@ import TaskList from '../TaskList';
 import './styles.scss';
 
 function App() {
-  const localTask = JSON.parse(localStorage.getItem('tasks')) || {};
-  const [tasks, setTasks] = useState(['Toucher de l\'herbe']);
+  const [tasks, setTasks] = useState([]);
   const [addTask, setAddTask] = useState(false);
   const [newTask, setNewTask] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // setTasks([
-    //   ...tasks,
-    //   localStorage.getItem('tasks'),
-    // ]);
-    // if (data) setTasks(JSON.parse(data));
-    // localStorage.setItem('tasks', JSON.stringify(tasks));
-  });
+    const defaultTask = [
+      { id: new Date().getTime(), name: 'Exemple de tâche' },
+    ];
+
+    const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+    // If the key doesn't exist in localStorage, setting a default value for the first render
+    if (storedTasks.length === 0) {
+      localStorage.setItem('tasks', JSON.stringify(defaultTask));
+      setTasks(defaultTask);
+    }
+  }, [searchQuery]);
 
   function addNewTask() {
     setTasks([...tasks, setNewTask]);
   }
-
-  console.log(localStorage);
 
   return (
     <div className="app">
@@ -39,9 +42,9 @@ function App() {
           addNewTask,
         }}
       >
-        <SearchTaskBar />
-        <TaskList addTask={addTask} tasks={tasks} />
-        <PurgeTasksButton />
+        <SearchTaskBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <TaskList addTask={addTask} tasks={tasks} setTasks={setTasks} />
+        <PurgeTasksButton tasks={tasks} setTasks={setTasks} />
       </Context.Provider>
     </div>
   );

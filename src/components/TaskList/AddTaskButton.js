@@ -4,7 +4,6 @@ import './styles.scss';
 
 function AddTaskButton() {
   const { addTask, setAddTask } = useContext(Context);
-  console.log(setAddTask);
   return (
     <button
       type="button"
@@ -13,7 +12,7 @@ function AddTaskButton() {
         setAddTask(!addTask);
       }}
     >
-      +
+      Ajout d'une nouvelle tâche
     </button>
   );
 }

@@ -1,9 +1,24 @@
+import PropTypes from 'prop-types';
 import './styles.scss';
 
-function PurgeTasksButton() {
+function PurgeTasksButton({ setTasks }) {
+  function clearLocalStorage() {
+    localStorage.setItem('tasks', '[]');
+    setTasks([]);
+  }
   return (
-    <button type="button" className="purgeButton">Supprimer Tout</button>
+    <button
+      type="button"
+      className="purgeButton"
+      onClick={clearLocalStorage}
+    >
+      Supprimer Tout
+    </button>
   );
 }
+
+PurgeTasksButton.propTypes = {
+  setTasks: PropTypes.func.isRequired,
+};
 
 export default PurgeTasksButton;

@@ -3,21 +3,26 @@ import Context from '../App/context';
 import './styles.scss';
 
 function AddTaskField() {
-  const { setTasks, setNewTask, tasks, newTask, setAddTask } = useContext(Context);
-  console.log(setTasks);
+  const {
+    setTasks, setNewTask, tasks, newTask, setAddTask,
+  } = useContext(Context);
   const localTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      console.log(newTask);
-      // setTasks(newTask);
+      const taskToAdd = {
+        id: new Date().getTime(),
+        name: newTask,
+      };
       setTasks([
         ...tasks,
-        newTask,
+        taskToAdd,
       ]);
-      const updatedTasks = localTasks.concat(newTask);
+      const updatedTasks = localTasks.concat(taskToAdd);
       localStorage.setItem('tasks', JSON.stringify(updatedTasks));
       setAddTask(false);
+      setNewTask('');
     }}
     >
       <input
@@ -25,12 +30,12 @@ function AddTaskField() {
         className="addTaskField"
         placeholder="Nouvelle tâche..."
         value={newTask}
+        maxLength={50}
         onChange={(event) => {
-          console.log(event.target.value);
           setNewTask(event.target.value);
         }}
       />
-      <input type="submit" className="addTaskField" value="Ajouter une nouvelle tâche" />
+      <input type="submit" className="addTaskField" value="Ajouter la tâche" />
     </form>
   );
 }
