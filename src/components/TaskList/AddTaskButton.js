@@ -12,7 +12,7 @@ function AddTaskButton() {
         setAddTask(!addTask);
       }}
     >
-      Ajout d'une nouvelle tâche
+      +
     </button>
   );
 }

@@ -9,21 +9,28 @@ function AddTaskField() {
   const localTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
   return (
-    <form onSubmit={(event) => {
-      event.preventDefault();
-      const taskToAdd = {
-        id: new Date().getTime(),
-        name: newTask,
-      };
-      setTasks([
-        ...tasks,
-        taskToAdd,
-      ]);
-      const updatedTasks = localTasks.concat(taskToAdd);
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-      setAddTask(false);
-      setNewTask('');
-    }}
+    <form
+      label="new_task"
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (newTask.length === 0) {
+          alert('Votre tâche est vide');
+        }
+        else {
+          const taskToAdd = {
+            id: new Date().getTime(),
+            name: newTask,
+          };
+          setTasks([
+            ...tasks,
+            taskToAdd,
+          ]);
+          const updatedTasks = localTasks.concat(taskToAdd);
+          localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+          setAddTask(false);
+          setNewTask('');
+        }
+      }}
     >
       <input
         type="text"
@@ -35,7 +42,7 @@ function AddTaskField() {
           setNewTask(event.target.value);
         }}
       />
-      <input type="submit" className="addTaskField" value="Ajouter la tâche" />
+      <input type="submit" label="new_task" className="addTaskField" value="Ajouter la nouvelle tâche" />
     </form>
   );
 }
