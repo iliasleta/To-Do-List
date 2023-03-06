@@ -9,9 +9,7 @@ function TaskList() {
   const { addTask, searchQuery } = useContext(Context);
   const taskString = localStorage.getItem('tasks');
   const taskArray = JSON.parse(taskString);
-  console.log(taskArray);
   const filteredArr = taskArray.filter(task => task.name.toLowerCase().includes(searchQuery.toLowerCase()));
-  console.log(filteredArr);
 
   return (
     <ul className="taskList">
